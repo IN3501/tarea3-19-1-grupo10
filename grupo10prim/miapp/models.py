@@ -1,11 +1,6 @@
 from django.db import models
 
 # Create your models here.
-class Mascota(models.Model):
-	nombre = models.CharField(max_length = 300)
-	especie = models.CharField(max_length = 200)
-	edad = models.IntegerField()
-	sexo = models.CharField(max_length = 100)
 
 class ClienteAmo(models.Model):
 	nombre = models.CharField(max_length = 300)
@@ -14,6 +9,13 @@ class ClienteAmo(models.Model):
 	email = models.EmailField(max_length = 400)
 	nombre_usuario = models.CharField(max_length = 100)
 	contrasena_usuario = models.CharField(max_length = 100)
+
+class Mascota(models.Model):
+	nombre = models.CharField(max_length = 300)
+	especie = models.CharField(max_length = 200)
+	edad = models.IntegerField()
+	sexo = models.CharField(max_length = 100)
+	cliente_amo = models.ForeignKey(ClienteAmo, on_delete=models.CASCADE, default='')
 
 class Profesional(models.Model):
 	nombre = models.CharField(max_length = 300)
@@ -27,18 +29,15 @@ class SolicitudHora(models.Model):
 	fecha = models.DateField()
 	horario_inicio = models.CharField(max_length = 100)
 	horario_final = models.CharField(max_length = 100)
+	profesional = models.OneToOneField(Profesional, on_delete = models.CASCADE, null = True)
+	mascota = models.ForeignKey(Mascota, on_delete = models.CASCADE, null = True)
+	#cliente_amo 
 
 class Atencion(models.Model):
 	diagnostico = models.CharField(max_length = 500)
 	tratamiento = models.CharField(max_length = 500)
-
-class Producto(models.Model):
-	nombre = models.CharField(max_length = 200)
-	categoria = models.CharField(max_length = 100)
-	marca = models.CharField(max_length = 100)
-	cantidad = models.IntegerField()
-	disponibilidad = models.IntegerField()
-	precio = models.IntegerField()
+	mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, null = True)
+	#cliente_amo
 
 class Compra(models.Model):
 	nombre_cliente = models.CharField(max_length = 300)
@@ -47,4 +46,13 @@ class Compra(models.Model):
 	fecha_tarjeta = models.DateField()
 	numero_tarjeta = models.IntegerField()
 	cvc_tarjeta = models.IntegerField()
+
+class Producto(models.Model):
+	nombre = models.CharField(max_length = 200)
+	categoria = models.CharField(max_length = 100)
+	marca = models.CharField(max_length = 100)
+	cantidad = models.IntegerField()
+	disponibilidad = models.IntegerField()
+	precio = models.IntegerField()
+	compra = models.ForeignKey(Compra, on_delete=models.CASCADE, null = True)
 	
