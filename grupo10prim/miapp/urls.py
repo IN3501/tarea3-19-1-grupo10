@@ -18,5 +18,14 @@ urlpatterns = [
     path('inventario', inventario, name='inventario'),
     path('comprar', comprarObjeto, name='comprarObjeto'),
     path('agregarElemento', agregarElemento, name='agregarElemento'),
-    path('envioInventario',envioInventario, name='envioInventario')
+    path('envioInventario',envioInventario, name='envioInventario'),
+
+    path('registrar_usuario', registrar_usuario, name='registrar_usuario'),
+    path('mostrar_resultado', recuperar_registro, name='mostrar_resultado'),
+    path('add_pet', add_pet, name='add_peth'),
+    path('client_profile', client_profile, name='client_profile'),
+    path('login', login, name='login'),
+
+    path('payment', payment, name='payment'),
+    path('shopping-cart', shopping_cart, name='shopping_cart')
 ]

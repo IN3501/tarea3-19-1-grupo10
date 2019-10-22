@@ -32,8 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'miapp',
-    'users',
-    'buying',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
